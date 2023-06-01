@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block content%}
+<body class="hold-transition login-page dark-mode">
+  <div class="login-logo mb-6">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVfwbxvnV74ja-ucf6QlYd_2K_WFt6R5HDoOUC1lA3nljcFMESAsH1Cf4Ol4Hko4Qiwys&usqp=CAU" width="150" height="150" class="img-thumbnail p-0 border rounded-circle" id="system-logo">
+    <div class="text-center h2 mb-0">Online Ledger System</div>
+  </div> <a href="{%url 'home'%}" class="login-box-msg"><button type="submit" id="save_medicine" 
+    name="delete"  class="bg-success btn-sm btn-flat ">Go Back</button></a>
+  <div class="card card-outline card-primary rounded-0 shadow">
+  <div class="card-body">
+
+    <article class="login-box-msg">
+        
+Welcome to our online ledger system! This software is designed to help us manage our financial transactions and student records efficiently. 
+It serves as a central hub where all staff members can access the dashboard and perform various tasks related to our organization's finances and student information.
+With this system, you'll be able to create new student profiles and input their details into the system. 
+<hr>This allows us to keep track of important information about our students in a structured and organized manner. It's crucial to ensure that you enter accurate student data to maintain the integrity of our records.
+Once the students are added, you can easily view a comprehensive list of all the students in the system. This list provides a quick overview of the students we have and allows you to access their individual records with just a few clicks. 
+<hr>
+You can search or apply filters to find specific students whenever needed, making it convenient to retrieve the information you require.
+I want to mention that as a staff member, your access is limited when it comes to editing or deleting entries. 
+<hr>This is done to ensure the consistency and reliability of our data. If you come across any errors or need to make changes to a student's record, please reach out to the admin or the appropriate personnel who have the necessary permissions. They will assist you in making any required modifications.
+Certain privileges, such as editing student records, editing or deleting financial transactions, adding new users, etc., are reserved for the admin. 
+<hr>This is to ensure the security and integrity of our system. If you need any of these actions performed, please communicate with the admin, and they will assist you accordingly.
+During your onboarding process, we will provide training and support to help you familiarize yourself with the system's functionalities. 
+<hr>If you ever have any questions or encounter any difficulties while using the software, don't hesitate to reach out to the admin or our designated support personnel. We're here to assist you and ensure that you can effectively utilize the system.
+We're excited to have you as part of our team and to leverage this online ledger system to streamline our financial processes and maintain accurate student records. It's an essential tool that will help us work more efficiently and ensure the integrity of our data. Thank you for your attention, and let's get started!"
+
+
+    </article>
+
+    <a href="{%url 'home'%}" class="login-box-msg"><button type="submit" id="save_medicine" 
+        name="delete"  class="bg-success btn-sm btn-flat ">Go Back</button></a>
+</div>
+</div>
+
+</body>
+{%endblock content%}

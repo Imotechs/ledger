@@ -1,0 +1,105 @@
+
+{%extends 'base.html'%}
+{%block content%}
+<body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+
+  {%include 'header.html'%}
+  {%include 'side_bar.html'%}
+
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+   
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card card-outline card-primary rounded-0 shadow">
+     
+        <div class="card-body">
+          
+
+            <div class="clearfix">&nbsp;</div>
+            <div class="clearfix">&nbsp;</div>
+
+            <div class="row">
+              <div class="col-md-12 table-responsive">
+                <table id="patient_history" class="table table-striped table-bordered">
+                  <colgroup>
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="15%">
+                  </colgroup>
+                  <thead>
+                    <tr class="bg-gradient-primary text-light">
+                      <th class="p-1 text-center">Session</th>
+                      <th class="p-1 text-center">Semester</th>
+                      <th class="p-1 text-center">Item</th>
+                      <th class="p-1 text-center">Amount Due</th>
+                      <th class="p-1 text-center" colspan="2">Payment
+                     </th>
+                      <th class="p-1 text-center">Date</th>
+                      <th class="p-1 text-center">Receipt.N0</th>
+                    </tr>
+                  </thead>
+               
+                  <tbody>
+                    <tr class="bg-gradient-primary text-light">
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                        <th cclass="p-1 text-center">Paid(&#8358)</th>
+                        <th class="p-1 text-center">Balance(&#8358)</th>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    {%for record in records%}
+                    <tr>
+                      <td>{{record.session.session_name}}</td>
+                      <td>{{record.semester.semester_name}}</td>
+                      <td>{{record.item}}</td>
+                      <td>{{record.ammount_due}}</td>
+                        <th cclass="p-1 text-center">{{record.paid}}</th>
+                        <th class="p-1 text-center">{{record.balance}}</th>
+                      <td>{{record.created_on}}</td>
+                      <td>{{record.reciept_no}}</td>
+                      <td>
+                        <form action="" method="post">
+                            {%csrf_token%}
+                          <button type="submit" id="save_medicine" 
+                          name="delete" value="{{record.id}}" class="btn bg-danger btn-sm btn-flat ">delete</button></td>
+                        </form>
+                      </td>
+                    </tr>
+                    {%endfor%}
+                  </tbody>
+
+                  <tbody id="history_data">
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+{%endblock content%}

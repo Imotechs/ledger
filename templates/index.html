@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./plugins/icheck-bootstrap/icheck-bootstrap.css">  
+
+    <style>
+    
+        body {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            color: #5a5a5a;
+            margin: 0;
+            font-family: var(--bs-body-font-family);
+            font-size: var(--bs-body-font-size);
+            font-weight: var(--bs-body-font-weight);
+            line-height: var(--bs-body-line-height);
+            color: var(--bs-body-color);
+            text-align: var(--bs-body-text-align);
+            background-color: var(--bs-body-bg);
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }    
+        .bg-success {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-success-rgb),var(--bs-bg-opacity))!important;
+        }
+        .fixed-top {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background: darkgreen;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        nav {
+            display: block;
+        }
+        
+              </style>
+</head>
+<body>
+    <header>
+        <nav >
+          <div class="navbar container-fluid">
+            <a class="navbar-brand" href="index.php"><img src="images/Untitled3.png" height="40px">  JOSTUM Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="applicantLogin" target="_blank">Check Admission Status</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="loginhome" target="_blank">Portal Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact Us</a>
+                </li>
+              </ul>
+              <!--<form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>-->
+            </div>
+          </div>
+        </nav>
+      </header>
+   
+</body>
+</html>

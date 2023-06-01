@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{%static 'account/plugins/fontawesome-free/css/all.min.css'%}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{%static 'account/plugins/icheck-bootstrap/icheck-bootstrap.min.css'%}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{%static 'account/dist/css/adminlte.min.css'%}">
+
+ <title>Online Ledger System</title>
+<style>
+  .dark-mode .bg-fuchsia, .dark-mode .bg-maroon {
+    color: #fff!important;
+}
+</style>
+</head>
+{%block content%}
+{%endblock content%}
+
+<!-- jQuery -->
+<script src="{%static 'account/plugins/jquery/jquery.min.js'%}"></script>
+<!-- Bootstrap 4 -->
+<script src="{%static 'account/plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<!-- AdminLTE App -->
+<script src="{%static 'account/dist/js/adminlte.min.js'%}"></script>
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="dist/js/demo.js"></script> -->
+
+
+<script src="{%static 'account/dist/js/jquery_confirm/jquery-confirm.js'%}"></script>
+
+<script src="{%static 'account/dist/js/common_javascript_functions.js'%}"></script>
+
+<script>
+  $(function(){
+    showMenuSelected("#mnu_dashboard", "");
+  })
+</script>
+
+</html>

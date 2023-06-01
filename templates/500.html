@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block content%}
+<body class="hold-transition login-page dark-mode">
+<div class="login-box">
+  <div class="login-logo mb-6">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVfwbxvnV74ja-ucf6QlYd_2K_WFt6R5HDoOUC1lA3nljcFMESAsH1Cf4Ol4Hko4Qiwys&usqp=CAU" width="150" height="150" class="img-thumbnail p-0 border rounded-circle" id="system-logo">
+    <div class="text-center h2 mb-0">Online Ledger System</div>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary rounded-0 shadow">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Error 500</p>
+      <p class="login-box-msg" style="color:red">Call for technical team</p>
+
+
+      
+    </div>
+    <a href="{%url 'home'%}" class="login-box-msg"><button type="submit" id="save_medicine" 
+    name="delete"  class="bg-success btn-sm btn-flat ">Go Back</button></a>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+
+</body>
+{%endblock content%}

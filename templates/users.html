@@ -1,0 +1,224 @@
+{%extends 'base.html'%}
+{%block content%}
+{%include 'header.html'%}
+{%include 'side_bar.html'%}
+<body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <!-- Navbar -->
+     
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        
+        <!-- Default box -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Users</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+        {%if users%}
+        <section class="content">
+       
+        <div class="card card-outline card-primary rounded-0 shadow">
+          <div class="card-header">
+            <h3 class="card-title">All Staff</h3>
+  
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              
+            </div>
+          </div>
+          <div class="card-body">
+           <div class="row table-responsive">
+  
+            <table id="all_users" 
+            class="table table-striped dataTable table-bordered dtr-inline" 
+            role="grid" aria-describedby="all_users_info">
+            <colgroup>
+                <col width="5%">
+                <col width="20%">
+                <col width="20%">
+                <col width="30%">
+              <col width="25%">
+              <col width="10%">
+              <col width="5%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th class="p-1 text-center">S/N</th>
+                <th class="p-1 text-center">StaffID</th>
+                <th class="p-1 text-center">First Name</th>
+                <th class="p-1 text-center">Email</th>
+                <th class="p-1 text-center">Date joined</th>
+                <th class="p-1 text-center">Level</th>
+               <th class="p-1 text-center">Action</th>
+              </tr>
+           </thead>
+  
+           <tbody>
+            {%for user in users%}
+
+             <tr>
+               <td class="px-2 py-1 align-middle text-center">{{user.id}}5</td>
+               <!-- <td class="px-2 py-1 align-middle text-center">
+                 <img class = "img-thumbnail rounded-circle p-0 border user-img" src="user_images/<?php echo $row['profile_picture'];?>">
+               </td> -->
+               
+               <td class="px-2 py-1 align-middle">{{user.username}}</td>
+               <td class="px-2 py-1 align-middle">{{user.first_name}}</td>
+               <td class="px-2 py-1 align-middle">{{user.email}}</td>
+               <td>{{user.date_joined|date:'d,M,Y'}}</td>
+               {%if user.is_superuser%}
+               <td><b class="text-success btn-flat">Admin</b></td>
+               {%else%}
+               <td>Staff</td>
+               {%endif%}
+               <td>  
+                <form action="" method="post">
+                  {%csrf_token%}
+                <button type="submit" id="save_medicine" 
+                name="delete" value="{{user.username}}" class="btn bg-danger btn-sm btn-flat ">delete</button></td>
+              </form>
+           </tr>
+           {%endfor%}
+       </tbody>
+     </table>
+   </div>
+  </div>
+  
+  <!-- /.card-footer-->
+  </div>
+  
+  <!-- /.card -->
+  
+  </section>
+  {%endif%}
+  <!-- /.content -->
+ 
+  <!-- Main content -->
+  <section class="content">
+    <!-- Default box -->
+    <div class="card card-outline card-primary rounded-0 shadow">
+      <div class="card-header">
+        <h3 class="card-title">Add Staff</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      {%if errors%}{%for error in errors%}<p style="color:red;" class="login-box-msg">{{error}}</p>{%endfor%}{%endif%}
+
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+         <div class="row">
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>StaffID</label>
+            <input type="text" id="display_name" name="staffid" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>First_name</label>
+            <input type="text" id="user_name" name="first_name" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div>
+          {%csrf_token%}
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>Email</label>
+            <input type="text" id="email" name="email" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>Password</label>
+            <input type="password" id="password" 
+            name="passkeys1" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>Confirm Password</label>
+            <input type="password" id="password" 
+            name="passkeys2" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div>
+          <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+            <label>Picture</label>
+            <input type="file" id="profile_picture" 
+            name="profile_picture" required="required"
+            class="form-control form-control-sm rounded-0" />
+          </div> -->
+
+          <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+            <label>&nbsp;</label>
+            <button type="submit" id="save_medicine" 
+            name="save_user" class="btn btn-primary btn-sm btn-flat ">AddStaff</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <!-- /.card -->
+</section>
+
+  </div>
+    </div>
+
+  <!-- /.content-wrapper -->
+  <div id ='footerz'>
+  <!-- {%include 'footer.html'%} -->
+</div>
+  <script>
+    
+    showMenuSelected("#mnu_users", "");
+  
+    var message = '<?php echo $message;?>';
+  
+    if(message !== '') {
+      showCustomMessage(message);
+    }
+  
+    
+    $(document).ready(function() {
+  
+      $("#user_name").blur(function() {
+        var userName = $(this).val().trim();
+        $(this).val(userName);
+  
+        if(userName !== '') {
+          $.ajax({
+            url: "ajax/check_user_name.php",
+            type: 'GET', 
+            data: {
+              'user_name': userName
+            },
+            cache:false,
+            async:false,
+            success: function (count, status, xhr) {
+              if(count > 0) {
+                showCustomMessage("This user name exists. Please choose another username");
+                $("#save_user").attr("disabled", "disabled");
+  
+              } else {
+                $("#save_user").removeAttr("disabled");
+              }
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+              showCustomMessage(errorMessage);
+            }
+          });
+        }
+  
+      });    
+    });
+  </script>
+
+{%endblock%}

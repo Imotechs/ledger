@@ -1,0 +1,129 @@
+{%extends 'base.html'%}
+{%block content%}
+{%include 'header.html'%}
+{%include 'side_bar.html'%}
+<body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <!-- Navbar -->
+     
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>New Student Record</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <!-- Default box -->
+          <div class="card card-outline card-primary rounded-0 shadow">
+            <div class="card-header">
+              <h3 class="card-title">Add Student</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            {%if errors%}
+            {%for er in errors%}
+            <p style="color: red;">{{er}}</p>
+            {%endfor%}
+            {%endif%}
+            {%if error%}
+            <p style="color: red;">{{error}}</p>
+            {%endif%}
+            <div class="card-body">
+              <form method="POST" action="{%url 'add_student'%}" enctype="multipart/form-data">
+               <div class="row">
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                    {{session}}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                        {{semester}}
+                </div> -->
+                {%csrf_token%}
+               
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                <label>Student Reg.No</label>
+                <input type="{{form.reg_no.input_type}}" 
+                    name="{{form.reg_no.html_name}}" value="{{reg}}" 
+                    class="form-control form-control-sm rounded-0" />
+                </div>
+
+        
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                  <label>First Name<small>(ex. John)</small></label>
+                  <input type="{{form.first_name.input_type}}"  
+                    name="{{form.first_name.html_name}}" required="required"
+                    class="form-control form-control-sm rounded-0" />
+                  
+                </div>
+  
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                  <label>Last Name <small>(ex. Doe)</small> </label>
+                  <input type="{{form.last_name.input_type}}"  
+                  name="{{form.last_name.html_name}}" required="required"
+                  class="form-control form-control-sm rounded-0" />
+                  
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                    <label>Middle Name</label>
+                    <input type="{{form.middle_name.input_type}}"  
+                  name="{{form.middle_name.html_name}}" required="required"
+                  class="form-control form-control-sm rounded-0" />
+                  </div>
+
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                    <label>Department</label>
+                    <input type="{{form.department.input_type}}"  
+                  name="{{form.department.html_name}}" 
+                  class="form-control form-control-sm rounded-0" />
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                    <label>Course Option</label>
+                    <input type="{{form.course_option.input_type}}"  
+                    name="{{form.course_option.html_name}}" 
+                    class="form-control form-control-sm rounded-0" />
+                  </div>
+                  <br>
+                  <hr>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                    <label>Level</label>
+                    <select  id="patient" class="form-control form-control-sm rounded-0">
+                      {%for level in form.level%}
+                      <option>{{level}}</option>
+                      {%endfor%}
+                    </select>
+                    
+                  </div>
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                  <label>Picture</label>
+                  <input type="file" id="profile_picture" 
+                  name="profile_picture" required="required"
+                  class="form-control form-control-sm rounded-0" />
+                </div> -->
+  
+                <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                  <label>&nbsp;</label>
+                  <button type="submit" id="save_medicine" 
+                  name="save_user" class="btn btn-primary btn-sm btn-flat ">Addrecord</button>
+                </div>
+              </div>
+            </form>
+          </div>
+  
+        </div>
+        <!-- /.card -->
+      </section>
+      
+
+{%endblock%}
