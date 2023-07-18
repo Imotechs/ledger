@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block content%}
+{%include 'header.html'%}
+{%include 'side_bar.html'%}
+<body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <!-- Navbar -->
+     
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>All Departments</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <!-- Default box -->
+          <div class="card card-outline card-primary rounded-0 shadow">
+            <div class="card-header">
+              <h3 class="card-title">ALL DEPARTMENT</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            {%if errors%}
+            {%for er in errors%}
+            <p style="color: red;">{{er}}</p>
+            {%endfor%}
+            {%endif%}
+            {%if error%}
+            <p style="color: red;">{{error}}</p>
+            {%endif%}
+            <div class="card-body">
+             {%for dept in depts%}
+             <a  href="{%url 'dept' dept.id%}" style="color: white;"><p class="bg-gradient-primary text-light" style="width: 300px; height: 40px;">{{dept.name}}</p></a>
+             {%endfor%}
+          </div>
+  
+        </div>
+        <!-- /.card -->
+      </section>
+      
+
+{%endblock%}

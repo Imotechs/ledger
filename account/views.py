@@ -3,14 +3,17 @@ from django.shortcuts import render,redirect
 from django.urls import reverse
 from .forms import SemesterForm,SessionForm,StudentForm
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
-from django.views.generic import ListView,CreateView,DeleteView,UpdateView
+from django.views.generic import ListView,CreateView,DeleteView,UpdateView,DetailView
 from django.contrib.auth import get_user_model
-from .models import Student,Record,Semester,Session
+from .models import Student,Record,Semester,Session,Department
 from django.utils.http import urlencode
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+
+
+
 adminusername = '23/MD/37123/DE'
 pass_keys= 'admin123'
 def my_custom_error_view(request):
@@ -49,7 +52,12 @@ def home(request):
     return render(request,'home.html',context)
 
 @login_required
-def add_record(request):
+def add_record(request,*args,**kwargs):
+    pk = kwargs.get('pk')
+    student_reg = None
+    if pk:
+        student_reg = Student.objects.get(id = pk).reg_no
+    
     if request.method=="POST":
         ammount_due = float(request.POST['ammount_due'])
         paid = float(request.POST['paid'])
@@ -80,7 +88,8 @@ def add_record(request):
     session = SessionForm()
     context ={
         'semester':semesters,
-        'session':session
+        'session':session,
+        'reg_no':student_reg,
     }
     return render(request,'add_record.html',context)
 
@@ -90,6 +99,11 @@ class AllRecordView(UserPassesTestMixin,ListView):
     template_name = 'all_record.html'
     success_url = ''
     context_object_name = 'records'
+    def get_context_data(self, **kwargs: Any):
+        context = super(AllRecordView,self).get_context_data(**kwargs)
+        dept =Department.objects.all()
+        context.update({'depts':dept})
+        return context
     def post(self,*args, **kwargs):
         record_id = self.request.POST['delete']
         record = Record.objects.get(id = record_id)
@@ -144,6 +158,7 @@ class UpdateStudentsView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
         if self.request.user.is_superuser:
             return True
         return False 
+    
      
 class AllUsersView(LoginRequiredMixin, UserPassesTestMixin,ListView):
     model = User
@@ -235,3 +250,55 @@ def add_student(request,*args,**kwargs):
         'form':form
     }
     return render(request,'add_student.html',context)
+
+
+class AddDepartment(UserPassesTestMixin,CreateView):
+    model = Department
+    template_name = 'add_dept.html'
+    success_url = '/all/department/'
+    fields = ['name']
+    def get_context_data(self, **kwargs: Any):
+        context = super(AddDepartment,self).get_context_data(**kwargs)
+        dept =Department.objects.all()
+        context.update({'depts':dept})
+        return context
+    
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False 
+    
+class AllDepartment(UserPassesTestMixin,ListView):
+    model = Department
+    template_name = 'all_dept.html'
+    context_object_name = 'depts'
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False 
+
+    
+class SingleDepartment(UserPassesTestMixin,DetailView):
+    model = Department
+    template_name = 'department.html'
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False 
+
+
+class StudentDetail(UserPassesTestMixin,DetailView):
+    model = Student
+    template_name = 'student_detail.html'
+    def get_context_data(self,*args,**kwargs):
+        pk= self.kwargs.get('pk')
+        student = Student.objects.get(id =pk)
+        context =  super(StudentDetail,self).get_context_data(*args,**kwargs)
+        records = Record.objects.filter(reg_no =student.reg_no)
+        context.update({'records':records})
+        return context
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False 
+    

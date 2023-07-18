@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Student,Session,Semester,Record,CustomUser
+from .models import Student,Session,Semester,Record,CustomUser,Department
 from django.contrib import admin
 from django.contrib.admin.models import LogEntry
 from django.contrib.auth import get_user_model
@@ -19,3 +19,4 @@ admin.site.register(Session)
 admin.site.register(Semester)
 admin.site.register(Record)
 admin.site.register(CustomUser)
+admin.site.register(Department)

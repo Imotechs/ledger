@@ -1,6 +1,8 @@
 
 {%extends 'base.html'%}
 {%block content%}
+{% load humanize %}
+
 <body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -26,6 +28,14 @@
             <div class="clearfix">&nbsp;</div>
 
             <div class="row">
+              <div class="col">
+                <div class="card-body">
+                  <p>Departments</p>
+                  {%for dept in depts%}
+                  <a  href="{%url 'dept' dept.id%}" style="color: white;"><p class="bg-gradient-primary text-light" style="width: 300px; height: 40px;">{{dept.name}}</p></a>
+                  {%endfor%}
+               </div>
+              </div>
               <div class="col-md-12 table-responsive">
                 <table id="patient_history" class="table table-striped table-bordered">
                   <colgroup>
@@ -56,8 +66,8 @@
                       <td></td>
                       <td></td>
                       <td></td>
-                        <th cclass="p-1 text-center">Paid(&#8358)</th>
-                        <th class="p-1 text-center">Balance(&#8358)</th>
+                        <th cclass="p-1 text-center">Paid</th>
+                        <th class="p-1 text-center">Balance</th>
                       <td></td>
                       <td></td>
                     </tr>
@@ -66,9 +76,9 @@
                       <td>{{record.session.session_name}}</td>
                       <td>{{record.semester.semester_name}}</td>
                       <td>{{record.item}}</td>
-                      <td>{{record.ammount_due}}</td>
-                        <th cclass="p-1 text-center">{{record.paid}}</th>
-                        <th class="p-1 text-center">{{record.balance}}</th>
+                      <td>&#8358;{{record.ammount_due|floatformat:2|intcomma }}</td>
+                        <th cclass="p-1 text-center">&#8358;{{record.paid|floatformat:2|intcomma }}</th>
+                        <th class="p-1 text-center">&#8358;{{record.balance|floatformat:2|intcomma }}</th>
                       <td>{{record.created_on}}</td>
                       <td>{{record.reciept_no}}</td>
                       <td>

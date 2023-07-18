@@ -34,7 +34,12 @@ class Semester(models.Model):
     def __str__(self):
         return f'{self.semester_name}|{self.session.session_name}'
 
+class Department(models.Model):
+    name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return self.name
+    
 class Student(models.Model):
     level = (
         (1,"100L"),
@@ -48,7 +53,7 @@ class Student(models.Model):
     middle_name = models.CharField(max_length=30,blank=True,null=True)
     last_name = models.CharField(max_length=30,blank=True, null=True)
     course_option= models.CharField(max_length=50)
-    department= models.CharField(max_length=50)
+    department= models.ForeignKey(Department, on_delete=models.CASCADE, null = True, blank = True)
     level = models.IntegerField(choices=level,default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     def __str__(self):

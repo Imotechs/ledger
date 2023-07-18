@@ -1,5 +1,5 @@
 from django import forms
-from .models import Record,Semester,Student
+from .models import Record,Semester,Student,Department
 
 class SemesterForm(forms.Form):
         semester = (
@@ -21,4 +21,9 @@ class SessionForm(forms.Form):
 class StudentForm(forms.ModelForm):
         class Meta:
                 model = Student
-                fields ='__all__'
+                fields =['reg_no','first_name','middle_name','level','last_name','course_option']
+
+        def department(self):
+                choice =  Department.objects.all()
+                print(choice,type(choice))
+                return choice

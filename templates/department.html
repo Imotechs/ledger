@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{%block content%}
+{%include 'header.html'%}
+{%include 'side_bar.html'%}
+
+<body class="hold-transition sidebar-mini dark-mode layout-fixed layout-navbar-fixed">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+      <!-- Navbar -->
+     
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>All Departments</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <!-- Default box -->
+          <div class="card card-outline card-primary rounded-0 shadow">
+            <div class="card-header">
+              <h3 class="card-title">ALL DEPARTMENT</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <p class = "btn btn-primary btn-sm btn-flat" style="width: 300px; height: 40px;"><a  href="{%url 'all_dept'%}" style="color: white;">All Depts</a></p>
+
+            <div class="card-body">
+                <div class="row table-responsive">
+                  <table id="all_patients" 
+                  class="table table-striped dataTable table-bordered dtr-inline" 
+                   role="grid" aria-describedby="all_patients_info">
+                  
+                    <thead>
+                      <tr>
+                        <th>Reg. No</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Course Option</th>
+                        <th>Level</th>
+                      </tr>
+                    </thead>
+    
+                    <tbody>
+                        {%for student in object.student_set.all%}
+                        <tr>
+                        <td>{{student.reg_no}}</td>
+                        <td class="bg-gradient-primary text-light"> <a href="{%url 'student_detail' student.id%}" style="color:brown">{{student.first_name}} {{student.last_name}}</a></td>
+                        <td>{{student.department}}</td>
+                        <td>{{student.course_option}}</td>
+                        <td>{{student.level}}00L</td>
+                        <td>
+
+                          <a href="{% url 'add_record1' student.id %}" class = "btn btn-primary btn-sm btn-flat">
+                          <i class="fa fa-edit"></i> add record
+                          </a>
+                        </td>
+                       
+                      </tr>
+                    {%endfor%}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            
+  
+        </div>
+        <!-- /.card -->
+      </section>
+      
+
+{%endblock%}

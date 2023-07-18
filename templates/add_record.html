@@ -45,8 +45,14 @@
                {%csrf_token%}
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                   <label>Student Reg.No</label>
+                  {%if reg_no%}
+                  <input type="text"  name="reg_no" value="{{reg_no}}" readonly required="required"
+                  class="form-control form-control-sm rounded-0" />
+                  {%else%}
                   <input type="text"  name="reg_no" required="required"
                   class="form-control form-control-sm rounded-0" />
+                  {%endif%}
+              
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                   <label>Item Desc.<small>(ex. school fees)</small></label>

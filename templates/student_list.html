@@ -142,7 +142,7 @@
                   {%for student in students%}
                   <tr>
                     <td>{{student.reg_no}}</td>
-                    <td>{{student.first_name}}</td>
+                    <td ><a href="{%url 'student_detail' student.id %}" >{{student.first_name}} <b class="fa fa-edit" style="font-size: 7px; color:white">see records</b></a ></td>
                     <td>{{student.last_name}}</td>
                     <td>{{student.department}}</td>
                     <td>{{student.course_option}}</td>

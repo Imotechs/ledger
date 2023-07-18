@@ -84,9 +84,12 @@
 
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                     <label>Department</label>
-                    <input type="{{form.department.input_type}}"  
-                  name="{{form.department.html_name}}" 
-                  class="form-control form-control-sm rounded-0" />
+                    <select  id="patient" name = 'department' class="form-control form-control-sm rounded-0">
+                      {%for dept in form.department%}
+                      <option value="{{dept}}">{{dept}}</option>
+                      {%endfor%}
+                    </select>
+
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                     <label>Course Option</label>

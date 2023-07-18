@@ -34,7 +34,34 @@
             </a>
           </li>
   
-          
+          <li class="nav-item" id="mnu_patients">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-pen"></i>
+              <p>
+                <i class="fas "></i>
+                Department
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{%url 'all_dept'%}" class="nav-link" 
+                id="mi_new_prescription">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Departments</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{%url 'add_dept'%}" class="nav-link" 
+                id="mi_new_prescription">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Department</p>
+                </a>
+              </li>
+              </ul>
+          </li>
+
+
           <li class="nav-item" id="mnu_patients">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-pen"></i>
@@ -50,6 +77,13 @@
                 id="mi_new_prescription">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add New Record</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{%url 'all_records'%}" class="nav-link" 
+                id="mi_new_prescription">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Records</p>
                 </a>
               </li>
               <li class="nav-item">
