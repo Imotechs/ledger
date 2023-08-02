@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (home,AllUsersView,login,add_record,
                     add_student,description,
                   AllStudentsView,UpdateStudentsView,
-                  AllRecordView,AddDepartment,AllDepartment,SingleDepartment,StudentDetail
+                  AllRecordView,AddDepartment,AllDepartment,SingleDepartment,StudentDetail,
+                  DepartmentUpdateView,
                   )
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
@@ -21,5 +22,6 @@ urlpatterns = [
   path('all/department/',AllDepartment.as_view(),name = 'all_dept'),
   path('department/<int:pk>/',SingleDepartment.as_view(),name = 'dept'),
   path('student/<int:pk>/',StudentDetail.as_view(),name = 'student_detail'),
+  path('update/<int:pk>/',DepartmentUpdateView.as_view(),name = 'update_dept')
 
 ]

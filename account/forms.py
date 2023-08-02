@@ -25,5 +25,5 @@ class StudentForm(forms.ModelForm):
 
         def department(self):
                 choice =  Department.objects.all()
-                print(choice,type(choice))
+                #print(choice,type(choice))
                 return choice

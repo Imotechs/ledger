@@ -32,8 +32,8 @@
               </div>
             </div>
             {%if errors%}
-            {%for er in errors%}
-            <p style="color: red;">{{er}}</p>
+            {%for er,val in errors.items%}
+            <p style="color: red;">{{er}} :{{val}}</p>
             {%endfor%}
             {%endif%}
             {%if error%}
@@ -86,7 +86,7 @@
                     <label>Department</label>
                     <select  id="patient" name = 'department' class="form-control form-control-sm rounded-0">
                       {%for dept in form.department%}
-                      <option value="{{dept}}">{{dept}}</option>
+                      <option value="{{dept.name}}">{{dept.name}}</option>
                       {%endfor%}
                     </select>
 
@@ -101,9 +101,9 @@
                   <hr>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                     <label>Level</label>
-                    <select  id="patient" class="form-control form-control-sm rounded-0">
-                      {%for level in form.level%}
-                      <option>{{level}}</option>
+                    <select  name ='level'id="patient" class="form-control form-control-sm rounded-0">
+                      {%for levels in form.level%}
+                      <option value="{{level}}">{{levels}}</option>
                       {%endfor%}
                     </select>
                     
@@ -118,7 +118,7 @@
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
                   <label>&nbsp;</label>
                   <button type="submit" id="save_medicine" 
-                  name="save_user" class="btn btn-primary btn-sm btn-flat ">Addrecord</button>
+                  name="save_user" class="btn btn-primary btn-sm btn-flat ">Save</button>
                 </div>
               </div>
             </form>

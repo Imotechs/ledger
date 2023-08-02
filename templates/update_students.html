@@ -86,9 +86,9 @@
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
                     <label>Department</label>
                     <select  id="patient" name = 'department' class="form-control form-control-sm rounded-0">
-                      <option value="">select Department</option>
+
                       {%for dept in form.department%}
-                      <option value="{{dept}}" >{{dept}}</option>
+                      <option value="{{dept.name}}" >{{dept.name}}</option>
                       {%endfor%}
                     </select>
                   </div>

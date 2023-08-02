@@ -14,7 +14,7 @@ from django.db.models import Q
 
 
 
-adminusername = '23/MD/37123/DE'
+adminusername = '.'
 pass_keys= 'admin123'
 def my_custom_error_view(request):
     return render(request,'500.html')
@@ -154,10 +154,36 @@ class UpdateStudentsView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
     context_object_name = 'students'
     template_name = 'update_students.html'
     success_url = '/all/students/'
-    def test_func(self):
+    def test_func(self,*args,**kwargs):
         if self.request.user.is_superuser:
             return True
         return False 
+    def post(self,*args,**kwargs):
+        #print(self.request.POST)
+        dept = Department.objects.get(name = self.request.POST['department'])
+        reg_no = self.request.POST.get('reg_no')
+        first_name =self.request.POST['first_name']
+        middle_name =self.request.POST.get('middle_name')
+        level = self.request.POST.get('level')
+        last_name = self.request.POST.get('last_name')
+        course_option = self.request.POST.get('course_option')
+        student = Student.objects.get(reg_no = reg_no)
+        student.first_name=first_name
+        student.middle_name=middle_name
+        student.level=int(level)
+        student.last_name=last_name
+        student.course_option=course_option
+        student.department=dept
+        student.save()
+        return redirect('allstudents')
+        # student = Student.objects.get(reg_no = self.request.POST['reg_no'])
+        # student.department =  dept
+        # student.save()
+        # return redirect('allstudents')
+
+        # return redirect('allstudents')
+       
+
     
      
 class AllUsersView(LoginRequiredMixin, UserPassesTestMixin,ListView):
@@ -232,14 +258,18 @@ def add_student(request,*args,**kwargs):
             }
             return render(request,'add_student.html',context)
         form = StudentForm(request.POST)
+        dept = Department.objects.get(name = request.POST.get('department'))
         if form.is_valid():
             form.save()
+            student = Student.objects.get(reg_no =request.POST['reg_no'])
+            student.department = dept
+            student.save()
             records =Record.objects.filter(reg_no =request.POST['reg_no'])
             if records :
                 for record in records:
                     record.is_draft = False
                     record.save()
-            return redirect('users')
+            return redirect('allstudents')
         else:
             context ={
                 'errors':form.errors,
@@ -277,7 +307,17 @@ class AllDepartment(UserPassesTestMixin,ListView):
             return True
         return False 
 
-    
+
+class DepartmentUpdateView(UserPassesTestMixin,UpdateView):
+    template_name = 'update_dept.html'
+    success_url = '/all/department/'
+    fields =['name']
+    model = Department
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
+     
 class SingleDepartment(UserPassesTestMixin,DetailView):
     model = Department
     template_name = 'department.html'

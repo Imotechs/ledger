@@ -48,7 +48,7 @@ class Student(models.Model):
         (4,"400L"),
         (5,'500L'),
     )
-    reg_no = models.CharField(max_length=15)
+    reg_no = models.CharField(max_length=15, unique=True)
     first_name = models.CharField(max_length=30,blank=True,null=True)    
     middle_name = models.CharField(max_length=30,blank=True,null=True)
     last_name = models.CharField(max_length=30,blank=True, null=True)
